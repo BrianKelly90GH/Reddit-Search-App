@@ -34,8 +34,12 @@ searchForm.addEventListener('submit', e => {
           <img class="card-img-top" src="..." alt="Card image cap">
           <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-text">${truncateString(post.selftext, 100)}</p>
+          <a href="${post.url}" target="_blank
+        " class="btn btn-primary">Read More</a>
+        <hr>
+        <span class="badge badge-secondary">Subreddit: ${post.subreddit}</span>
+        <span class="badge badge-dark">Score: ${post.score}</span>
           </div>
         </div>
         `;
@@ -70,4 +74,11 @@ function showMessage(message, className){
 
   // Message time out
   setTimeout( () => document.querySelector('.alert').remove(), 2000)
+}
+
+// Truncate String Function
+function truncateString(myString, limit) {
+  const shortened = myString.indexOf(' ', limit);
+  if (shortened == -1) return myString;
+  return myString.substring(0, shortened);
 }
