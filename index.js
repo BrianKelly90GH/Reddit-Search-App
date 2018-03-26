@@ -1,3 +1,5 @@
+import reddit from './searchRedditAPI';
+
 const searchForm = document.getElementById('search-form');
 const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-input');
@@ -21,6 +23,13 @@ searchForm.addEventListener('submit', e => {
 
     // Clear input field once search is successful
     searchInput.value = ' ' ;
+
+    // Search reddit
+    reddit.search(searchTermValue, searchLimitValue, sortByValue).then(searchResults =>{
+      console.log(searchResults);
+    });
+
+
     e.preventDefault();
 });
 
