@@ -10,16 +10,17 @@ rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJ
 </head>
 <body>
   <!--Navbar section with bootstrap  -->
-  <nav class="navbar navbar-dark bg-primary mb-3">
- <div class="container">
-   <span class="navbar-brand">Finddit</span>
- </div>
+<nav class="navbar navbar-dark bg-dark mb-3">
+  <a class="navbar-brand" href="#">
+    <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Finddit
+  </a>
 </nav>
 
 <!-- The search form section with bootstap -->
 <div id="search-container" class="container">
- <div id="search" class="card card-body bg-light mb-2">
-   <h4>Search Reddit</h4>
+ <div id="search" class="card card-body bg-secondary mb-2">
+   <h4>Search Reddit with Finddit</h4>
    <form id="search-form">
      <div class="form-group">
        <input type="text" id="search-input" class="form-control mb-3" placeholder="Search Term...">
@@ -40,9 +41,9 @@ rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJ
      <h5 class="mt-2">Limit: </h5>
      <div class="form-group">
        <select name="limit" id="limit" class="form-control">
-         <option value="5">5</option>
+         <option value="5" selected>5</option>
          <option value="10">10</option>
-         <option value="25" selected>25</option>
+         <option value="25">25</option>
          <option value="50">50</option>
          <option value="100">100</option>
        </select>
