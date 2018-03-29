@@ -1,7 +1,6 @@
-import reddit from './searchRedditAPI';
+import reddit from '../Javascript/searchRedditAPI';
 
 const searchForm = document.getElementById('search-form');
-const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-input');
 
 // Form event listener
@@ -22,7 +21,7 @@ searchForm.addEventListener('submit', e => {
     }
 
     // Clear input field once search is successful
-    searchInput.value = ' ' ;
+    searchInput.value = '' ;
 
     // Search reddit
     reddit.search(searchTermValue, searchLimitValue, sortByValue).then(searchResults =>{
@@ -51,7 +50,6 @@ searchForm.addEventListener('submit', e => {
       output += '</div>';
       document.getElementById('results').innerHTML = output;
     });
-
 
     e.preventDefault();
 });
