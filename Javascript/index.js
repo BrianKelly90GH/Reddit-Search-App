@@ -26,46 +26,54 @@ searchForm.addEventListener('submit', e => {
 
       // Set the guard of the alert message to true and show message
       alertMessage = true;
+
+      // Display error message
       showMessage('Please add a search term', 'alert-danger');
     }
 
-    // Clear input field once search is successful
-    searchInput.value = '' ;
+    else {
+      // Clear input field once search is successful
+      searchInput.value = '' ;
 
-    // Search reddit
-    reddit.search(searchTermValue, searchLimitValue, sortByValue).then(searchResults =>{
+      // Display su ccess message
+      showMessage('Your serach was successful', 'alert-success');
 
-      // Set output varible to html markup
-      let output = '<div class="card-columns">';
-      // Loop through posts and test creation of div cards with bootstrap
-      searchResults.forEach(post => {
+      // Search reddit
+      reddit.search(searchTermValue, searchLimitValue, sortByValue).then(searchResults =>{
 
-        // Check for an image with the post and if doesnt set image to stock image
-        let image = post.preview
-        ? post.preview.images[0].source.url
-        : 'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg';
+        // Set output varible to html markup
+        let output = '<div class="card-columns">';
+        // Loop through posts and test creation of div cards with bootstrap
+        searchResults.forEach(post => {
 
-        // Concat the results of the fetch to the output
-        output += `
-        <div class="card text-white bg-secondary mb-3">
-          <img class="card-img-top" src="${image}" alt="Card image cap">
-          <div class="card-body">
-          <h5 class="card-title">${post.title}</h5>
-          <p class="card-text">${truncateString(post.selftext, 100)}</p>
-          <a href="${post.url}" target="_blank
-        " class="btn btn-dark">Read More</a>
-        <hr>
-        <span class="badge badge-secondary">Subreddit: ${post.subreddit}</span>
-        <span class="badge badge-dark">Score: ${post.score}</span>
+          // Check for an image with the post and if doesnt set image to stock image
+          let image = post.preview
+          ? post.preview.images[0].source.url
+          : 'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg';
+
+          // Concat the results of the fetch to the output
+          output += `
+          <div class="card text-white bg-secondary mb-3">
+            <img class="card-img-top" src="${image}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">${post.title}</h5>
+            <p class="card-text">${truncateString(post.selftext, 100)}</p>
+            <a href="${post.url}" target="_blank
+          " class="btn btn-dark">Read More</a>
+          <hr>
+          <span class="badge badge-secondary">Subreddit: ${post.subreddit}</span>
+          <span class="badge badge-dark">Score: ${post.score}</span>
+            </div>
           </div>
-        </div>
-        `;
-      })
-      // Concat the end of the HTML tag to the output 
-      output += '</div>';
-      document.getElementById('results').innerHTML = output;
-    });
+          `;
+        })
+        // Concat the end of the HTML tag to the output
+        output += '</div>';
 
+        // Set the div results to output
+        document.getElementById('results').innerHTML = output;
+      });
+    }
     e.preventDefault();
 });
 
